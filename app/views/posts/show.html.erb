@@ -1,16 +1,58 @@
 <%- model_class = Post -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+  <h1><%= @post.name %></h1>
 </div>
 
-<dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
-  <dd><%= @post.name %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:category) %>:</strong></dt>
-  <dd><%= @post.category %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:license_plate) %>:</strong></dt>
-  <dd><%= @post.license_plate %></dd>
-</dl>
+<div class="row">
+  <h4>Auto klus</h4>
+  <div class="span5">
+    <div class="well">
+      <p>
+        <h4>Algemene gegevens:</h4>
+        Naam: Sjaak <br />
+        Email: <%= @post.email %> <br />
+        Soort autoklus: <%= @post.category %> <br />
+        Voertuigsoort: <%= @post.lp_car_category %> <br />
+        <% if @post.lp_apk.present? %>
+          Vervaldatum APK: <%= @post.lp_apk %>
+        <% end %>
+      </p>
+    </div>
+  </div>
+  <div class="span4">
+    <div class="well">
+      <p>
+        <h4>Auto gegevens</h4>
+        Kenteken: <%= @post.license_plate %> <br />
+        Merk: <%= @post.lp_make %> <br />
+        Model: <%= @post.lp_model %> <br />
+        <% if @post.lp_model_type.present? %>
+          Afbouw / inrichting: <%= @post.lp_model_type %> <br />
+        <% end %>
+        Bouwjaar: <%= @post.lp_year %> <br />
+        Hoofdbrandstof: <%= @post.lp_fuel %> <br />
+        <% if @post.lp_seats.present? %>
+          Aantal zitplaatsen: <%= @post.lp_seats %>
+        <% end %>
+        <% if @post.lp_cylinder.present? %>
+          Cilinderinhoud: <%= @post.lp_cylinder %>
+        <% end %>
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="span9">
+    <hr />
+    <div class="well">
+      <h4>Omschrijving klus</h4>
+      <p>
+        <%= simple_format @post.description %>
+      </p>
+    </div>
+  </div>
+</div>
 
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),

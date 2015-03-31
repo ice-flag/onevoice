@@ -33,6 +33,9 @@ end
 
 gem 'jquery-rails'
 
+# for xml parsing
+gem 'nokogiri'
+
 # for beautiful PDFs
 gem 'prawn'
 

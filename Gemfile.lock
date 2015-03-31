@@ -81,9 +81,12 @@ GEM
       rack-contrib
       railties
     mime-types (1.25.1)
+    mini_portile (0.6.1)
     multi_json (1.11.0)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
+    nokogiri (1.6.5)
+      mini_portile (~> 0.6.0)
     oauth2 (0.9.4)
       faraday (>= 0.8, < 0.10)
       jwt (~> 1.0)
@@ -182,6 +185,7 @@ DEPENDENCIES
   jquery-rails
   less-rails
   meta_request
+  nokogiri
   omniauth
   omniauth-google-oauth2 (= 0.2.2)
   pg

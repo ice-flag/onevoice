@@ -1,0 +1,61 @@
+<%= render "form_header" %>
+
+<div class="row">
+  <div class="span4">
+    <ul class="nav nav-pills">
+      <li>
+        <a href="<%= step1_post_path(@post) %>">Stap 1. Algemene gegevens</a>
+      </li>
+    </ul>
+  </div>
+  <div class="span4">
+    <ul class="nav nav-pills">
+      <li>
+        <a href="<%= step2_post_path(@post) %>">Stap 2. Ophalen kenteken gegevens</a>
+      </li>
+    </ul>
+  </div>
+  <div class="span4">
+    <ul class="nav nav-pills">
+      <li class="active">
+        <a href="#">Stap 3. Plaatsen van de klus</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+  <%= form_for @post, :html => { :class => 'form-horizontal' } do |f| %>
+    <div class="row">
+      <div class="span12">
+        <h4>Informatie over de klus zelf</h4>
+        <p>
+          <em>*Verplichte velden</em>
+        </p>
+
+        <div class="control-group">
+          <%= f.label :description, "Omschrijving klus: *", :class => 'control-label' %>
+          <div class="controls">
+            <%= f.text_area :description, :class => "text_area_custom", :placeholder => "Voorbeeld: De einddemper van me uitlaat moet vervangen worden omdat deze anders niet door de APK komt. Er moet een nieuw uitlaatstuk onder." %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="span5">
+        <div class="control-group">
+          <p style="text-align: center;">
+            Wie levert de onderdelen? Doet de garage dat of lever je die zelf? Als het bijvoorbeeld om een uitlaatstuk vervangen gaat, lever je die zelf aan of regel de garage deze?
+          </p>
+          <%= f.label :supplier_parts, "Reparatie onderdelen: *", :class => 'control-label' %>
+          <div class="controls">
+            <%= f.select(:supplier_parts, [["De garage",1],["Ikzelf",2]], :prompt => "Wie levert deze?") %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <%= f.submit "Doorgaan naar stap 3", :class => 'btn btn-primary', :name => "to_posting" %> | <%= link_to "Terug naar stap 1" ,step1_post_path(@post), :class => 'btn' %>
+      <p><em>Je kunt de opdracht altijd nog wijzigen</em></p>
+    </div>
+  <% end %>

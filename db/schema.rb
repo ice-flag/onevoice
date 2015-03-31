@@ -11,15 +11,26 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150330165925) do
+ActiveRecord::Schema.define(:version => 20150331131425) do
 
   create_table "posts", :force => true do |t|
     t.string   "name"
     t.string   "category"
     t.string   "license_plate"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
     t.string   "email"
+    t.string   "lp_make"
+    t.string   "lp_model"
+    t.string   "lp_year"
+    t.string   "lp_cylinder"
+    t.string   "lp_car_category"
+    t.string   "lp_model_type"
+    t.string   "lp_seats"
+    t.string   "lp_fuel"
+    t.string   "lp_apk"
+    t.text     "description"
+    t.integer  "supplier_parts"
   end
 
 end

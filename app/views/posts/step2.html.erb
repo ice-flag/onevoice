@@ -1,3 +1,5 @@
+<%= render "form_header" %>
+
 <div class="row">
   <div class="span4">
     <ul class="nav nav-pills">
@@ -22,14 +24,88 @@
   </div>
 </div>
 
-<br />
+  <p>
+    Op het kenteken zijn de volgende gegevens al voor u ingevuld.<br />
+    Mocht u het verkeerde kenteken hebben ingevuld kunt u terug naar stap 1 gaan om dit te veranderen.<br />
+    Het kan zijn dat er geen gegevens zijn opgehaald. In dat geval zijn deze niet beschikbaar in onze database en kunt u het beste deze zelf invullen.
+  </p>
+  <h4>Auto gegevens ophalen (kenteken: <%= @post.license_plate %>)</h4>
+  <%= form_for @post, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="row">
+    <div class="span6">
+      <p>
+        <em>*Verplichte velden</em>
+      </p>
 
-<%= form_for @post, :html => { :class => 'form-horizontal' } do |f| %>
+      <div class="control-group">
+        <%= f.label :lp_car_category, "Voertuigsoort: *", :class => 'control-label' %>
+        <div class="controls">
+          <%= f.text_field :lp_car_category, :class => 'input-xlarge', :placeholder => "Personenauto, bus, space shuttle?", :value => @lp_car_category %>
+        </div>
+      </div>
 
-  <p>Stap 2</p>
+      <div class="control-group">
+        <%= f.label :lp_make, "Auto Merk: *", :class => 'control-label' %>
+        <div class="controls">
+          <%= f.text_field :lp_make, :class => 'input-xlarge', :placeholder => "Volkswagen, Maserati, Trabant?", :value => @lp_make %>
+        </div>
+      </div>
 
-  <div class="form-actions">
-    <%= f.submit "Doorgaan naar stap 2", :class => 'btn btn-primary', :name => "to_step2" %>
-    <p><em>Je kunt de opdracht altijd nog wijzigen</em></p>
+      <div class="control-group">
+        <%= f.label :lp_model, "Auto Model: *", :class => 'control-label' %>
+        <div class="controls">
+          <%= f.text_field :lp_model, :class => 'input-xlarge', :placeholder => "Golf, Cooper, 207?", :value => @lp_model %>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <%= f.label :lp_year, "Bouwjaar: *", :class => 'control-label' %>
+        <div class="controls">
+          <%= f.text_field :lp_year, :class => 'input-xlarge', :placeholder => "September 2002 of gewoon 2002", :value => @lp_year %>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <%= f.label :lp_fuel, "Hoofdbrandstof *", :class => 'control-label' %>
+        <div class="controls">
+          <%= f.text_field :lp_fuel, :class => 'input-xlarge', :placeholder => "Benzine, Diesel, GAS LPG, Kryptonite, Sinaasappelsap??", :value => @lp_fuel %>
+        </div>
+      </div>
+    </div>
+    <div class="span6">
+      <br />
+      <div class="control-group">
+        <%= f.label :lp_model_type, "Afbouw / inrichting: (optioneel):", :class => 'control-label' %>
+        <div class="controls">
+          <%= f.text_field :lp_model_type, :class => 'input-xlarge', :placeholder => "Sedan, Cabrio, Station, Hatchbak?", :value => @lp_model_type %>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <%= f.label :lp_seats, "Aantal zitplaatsen: (optioneel):", :class => 'control-label' %>
+        <div class="controls">
+          <%= f.text_field :lp_seats, :class => 'input-xlarge', :placeholder => "3, 5 of anders?", :value => @lp_seats %>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <%= f.label :lp_cylinder, "Cilinderinhoud: (optioneel)", :class => 'control-label' %>
+        <div class="controls">
+          <%= f.text_field :lp_cylinder, :class => 'input-xlarge', :placeholder => "Bijvoorbeeld 1798 cc", :value => @lp_cylinder %>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <%= f.label :lp_apk, "Vervaldatum APK (optioneel)", :class => 'control-label' %>
+        <div class="controls">
+          <%= f.text_field :lp_apk, :class => 'input-xlarge', :placeholder => "Benzine, Diesel, GAS LPG, Kryptonite, Sinaasappelsap?", :value => @lp_apk %>
+        </div>
+      </div>
+    </div>
   </div>
-<% end %>
+
+    <div class="form-actions">
+      <%= f.submit "Doorgaan naar stap 3", :class => 'btn btn-primary', :name => "to_step3" %> | <%= link_to "Terug naar stap 1" ,step1_post_path(@post), :class => 'btn' %>
+      <p><em>Je kunt de opdracht altijd nog wijzigen</em></p>
+    </div>
+  <% end %>
