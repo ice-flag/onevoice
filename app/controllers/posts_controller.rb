@@ -72,7 +72,7 @@ class PostsController < ApplicationController
       require 'open-uri'
       require 'nokogiri'
 
-      @result = Nokogiri.XML(open("https://api.datamarket.azure.com/opendata.rdw/VRTG.Open.Data/v1/KENT_VRTG_O_DAT?$filter=Kenteken%20eq%20%27#{@post.license_plate}%27").read)
+      @result = Nokogiri.XML(open("https://api.datamarket.azure.com/opendata.rdw/VRTG.Open.Data/v1/KENT_VRTG_O_DAT?$filter=Kenteken%20eq%20%27#{@post.license_plate.to_s.gsub("-","").gsub(" ","").upcase}%27").read)
       model = @result.to_s.match(/Handelsbenaming.*\:Handelsbenaming/)
       make = @result.to_s.match(/Merk.*\:Merk/)
       @lp_make = make.to_s.gsub("Merk>","").gsub("</d:Merk","").gsub("AUTO UNION","AUDI").gsub("MERCEDES-BENZ","MERCEDES").gsub("MICRO COMPACT CAR SMART","SMART").gsub("MICRO COMPACT CAR","SMART").gsub(" ", "%20")
